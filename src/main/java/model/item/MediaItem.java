@@ -6,16 +6,29 @@ import java.util.Date;
 
 public abstract class MediaItem {
     private int id;
+    private String name;
     private Author author;
-    private double length;
-    private Date release;
+    private int releaseYear;
 
-    public MediaItem(Author author, double length, Date release) {
+    public MediaItem(String name, Author author, int release) {
+        this.name = name;
         this.author = author;
-        this.length = length;
-        this.release = release;
+        this.releaseYear = release;
     }
 
-    public abstract boolean add();
-    public abstract boolean remove(int id);
+    public int getId() {
+        return id;
+    }
+
+    public Author getAuthor() {
+        return author;
+    }
+
+    public int getReleaseYear() {
+        return releaseYear;
+    }
+
+    public String getName() {
+        return name;
+    }
 }

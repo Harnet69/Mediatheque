@@ -6,11 +6,13 @@ import Dao.DaoPodcast;
 import model.item.ItemKind;
 import model.item.MediaItem;
 
+import java.util.List;
+
 public class Mediatheque {
     private static Mediatheque instance = null;
     private DaoBook books = new DaoBook();
-    private DaoMovie movie = new DaoMovie();
-    private DaoPodcast daoPodcast = new DaoPodcast();
+    private DaoMovie movies = new DaoMovie();
+    private DaoPodcast podcasts = new DaoPodcast();
 
     private Mediatheque() {
     }
@@ -22,15 +24,24 @@ public class Mediatheque {
         return instance;
     }
 
+    public DaoBook getBooks() {
+        return books;
+    }
+
+    public DaoMovie getMovies() {
+        return movies;
+    }
+
+    public DaoPodcast getPodcasts() {
+        return podcasts;
+    }
+
     // search by kind
-    public MediaItem search(ItemKind itemKind){
+    public List<? extends MediaItem> search(ItemKind itemKind){
         switch (itemKind){
-            case BOOK: System.out.println("Search in books");
-            break;
-            case MOVIE: System.out.println("Search in movies");
-                break;
-            case PODCAST: System.out.println("Search in podcast");
-                break;
+            case BOOK: return books.getAllItems();
+            case MOVIE: return movies.getAllItems();
+            case PODCAST: return podcasts.getAllItems();
         }
         return null;
     }

@@ -10,7 +10,12 @@ public class DaoBook implements Dao<Book> {
     private List<Book> books = new ArrayList<>();
 
     @Override
-    public List<Book> search(ItemKind itemKind) {
+    public List<Book> getAllItems() {
         return books;
+    }
+
+    @Override
+    public void addItem(Book item) {
+        books.add(item);
     }
 }
