@@ -17,6 +17,6 @@ public class Podcast extends MediaItem implements Listenable {
 
     @Override
     public void listen() {
-
+        System.out.println("Listen to podcast");
     }
 }

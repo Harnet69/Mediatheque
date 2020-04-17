@@ -8,7 +8,6 @@ import java.util.stream.Collectors;
 
 public class Mediatheque {
     private static Mediatheque instance = null;
-    private int idCounter = 0;
     private DaoMediaItem items = new DaoMediaItem();
 
     private Mediatheque() {
@@ -21,11 +20,15 @@ public class Mediatheque {
         return instance;
     }
 
-    public void addItem(MediaItem mediaItem){
-        mediaItem.setId(idCounter);
-        items.addItem(mediaItem);
-        idCounter++;
+    public DaoMediaItem getItems() {
+        return items;
     }
+
+    //    public void addItem(MediaItem mediaItem){
+//        mediaItem.setId(idCounter);
+//        items.addItem(mediaItem);
+//        idCounter++;
+//    }
 
     public List<MediaItem> search(String category){
         return items.getAllItems().stream()

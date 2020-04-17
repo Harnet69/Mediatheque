@@ -17,6 +17,6 @@ public class Book extends MediaItem implements Readable {
 
     @Override
     public void read() {
-
+        System.out.println("Read the book");
     }
 }
