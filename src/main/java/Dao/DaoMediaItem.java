@@ -28,4 +28,9 @@ public class DaoMediaItem implements Dao<MediaItem> {
         items.add(item);
         idCounter++;
     }
+
+    @Override
+    public void removeItem(MediaItem item) {
+        items.remove(item);
+    }
 }

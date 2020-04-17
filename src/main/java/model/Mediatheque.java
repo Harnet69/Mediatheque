@@ -1,6 +1,7 @@
 package model;
 
 import Dao.DaoMediaItem;
+import model.category.CategoryKind;
 import model.item.MediaItem;
 
 import java.util.List;
@@ -24,11 +25,12 @@ public class Mediatheque {
         return items;
     }
 
-    //    public void addItem(MediaItem mediaItem){
-//        mediaItem.setId(idCounter);
-//        items.addItem(mediaItem);
-//        idCounter++;
-//    }
+    public void showItems(){
+        for(MediaItem item : Mediatheque.getInstance().search(CategoryKind.BOOK.toString())){
+            System.out.println(item.getId() + " : " + item.getName() + " " + item.getCategory().getName() +
+                    " " + item.getReleaseYear() + " " + item.getAuthor().getName());
+        }
+    }
 
     public List<MediaItem> search(String category){
         return items.getAllItems().stream()

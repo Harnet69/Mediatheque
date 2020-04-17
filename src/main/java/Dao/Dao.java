@@ -9,4 +9,6 @@ public interface Dao<T> {
     List<T> getItemById(int id);
 
     void addItem(T item);
+
+    void removeItem(T item);
 }

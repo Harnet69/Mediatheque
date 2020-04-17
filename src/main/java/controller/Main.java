@@ -21,10 +21,12 @@ public class Main {
         manager.addItem(TheHobbit);
         manager.addItem(LordOfRings);
 
-//        System.out.println(Mediatheque.getInstance().search(CategoryKind.BOOK.toString()));
-        for(MediaItem item : Mediatheque.getInstance().search(CategoryKind.BOOK.toString())){
-            System.out.println(item.getId() + " : " + item.getName() + " " + item.getCategory().getName() +
-                    " " + item.getReleaseYear() + " " + item.getAuthor().getName());
-        }
+        Mediatheque.getInstance().showItems();
+
+        manager.removeItem(TheHobbit);
+        // after removing
+        System.out.println();
+        System.out.println("After removing: ");
+        Mediatheque.getInstance().showItems();
     }
 }

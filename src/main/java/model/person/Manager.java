@@ -15,4 +15,8 @@ public class Manager extends Person {
     public void addItem(MediaItem mediaItem){
         Mediatheque.getInstance().getItems().addItem(mediaItem);
     }
+
+    public void removeItem(MediaItem mediaItem){
+        Mediatheque.getInstance().getItems().removeItem(mediaItem);
+    }
 }
