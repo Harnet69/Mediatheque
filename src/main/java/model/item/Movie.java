@@ -16,4 +16,9 @@ public class Movie extends MediaItem implements Watchable {
     public double getLength() {
         return length;
     }
+
+    @Override
+    public void watch() {
+
+    }
 }

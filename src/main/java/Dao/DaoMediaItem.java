@@ -4,6 +4,7 @@ import model.item.MediaItem;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class DaoMediaItem implements Dao<MediaItem> {
     private List<MediaItem> items = new ArrayList<>();
@@ -11,6 +12,13 @@ public class DaoMediaItem implements Dao<MediaItem> {
     @Override
     public List<MediaItem> getAllItems() {
         return items;
+    }
+
+    @Override
+    public List<MediaItem> getItemById(int id) {
+        return items.stream()
+                .filter(x -> x.getId() == id)
+                .collect(Collectors.toList());
     }
 
     @Override

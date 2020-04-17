@@ -3,8 +3,6 @@ package model.item;
 import model.category.Category;
 import model.person.Author;
 
-import java.util.Date;
-
 public class Podcast extends MediaItem implements Listenable {
     private double length;
 
@@ -15,5 +13,10 @@ public class Podcast extends MediaItem implements Listenable {
 
     public double getLength() {
         return length;
+    }
+
+    @Override
+    public void listen() {
+
     }
 }

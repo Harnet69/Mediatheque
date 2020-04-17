@@ -14,4 +14,9 @@ public class Book extends MediaItem implements Readable {
     public int getNumOfString() {
         return numOfString;
     }
+
+    @Override
+    public void read() {
+
+    }
 }
