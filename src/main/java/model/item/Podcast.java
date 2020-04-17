@@ -1,4 +1,4 @@
 package model.item;
 
-public class Podcast extends MediaItem {
+public class Podcast extends MediaItem implements Listenable {
 }

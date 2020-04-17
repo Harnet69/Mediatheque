@@ -1,4 +1,4 @@
 package model.item;
 
-public class Movie extends MediaItem {
+public class Movie extends MediaItem implements Watchable {
 }
