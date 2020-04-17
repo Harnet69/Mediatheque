@@ -1,13 +1,13 @@
-package model.item;
+package model.category;
 
-public enum ItemKind {
+public enum CategoryKind {
     BOOK ("book"),
     MOVIE ("movie"),
     PODCAST ("podcast");
 
     private String kind;
 
-    ItemKind(String kind) {
+    CategoryKind(String kind) {
         this.kind = kind;
     }
 

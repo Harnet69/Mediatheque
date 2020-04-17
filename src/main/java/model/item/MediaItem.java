@@ -1,5 +1,6 @@
 package model.item;
 
+import model.category.Category;
 import model.person.Author;
 
 import java.util.Date;
@@ -7,17 +8,27 @@ import java.util.Date;
 public abstract class MediaItem {
     private int id;
     private String name;
+    private Category category;
     private Author author;
     private int releaseYear;
 
-    public MediaItem(String name, Author author, int release) {
+    public MediaItem(String name, Category category, Author author, int release) {
         this.name = name;
+        this.category = category;
         this.author = author;
         this.releaseYear = release;
     }
 
     public int getId() {
         return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public Category getCategory() {
+        return category;
     }
 
     public Author getAuthor() {
@@ -28,7 +39,4 @@ public abstract class MediaItem {
         return releaseYear;
     }
 
-    public String getName() {
-        return name;
-    }
 }

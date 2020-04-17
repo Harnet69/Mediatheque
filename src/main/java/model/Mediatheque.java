@@ -1,18 +1,14 @@
 package model;
 
-import Dao.DaoBook;
-import Dao.DaoMovie;
-import Dao.DaoPodcast;
-import model.item.ItemKind;
+import Dao.DaoMediaItem;
 import model.item.MediaItem;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Mediatheque {
     private static Mediatheque instance = null;
-    private DaoBook books = new DaoBook();
-    private DaoMovie movies = new DaoMovie();
-    private DaoPodcast podcasts = new DaoPodcast();
+    private DaoMediaItem items = new DaoMediaItem();
 
     private Mediatheque() {
     }
@@ -24,30 +20,13 @@ public class Mediatheque {
         return instance;
     }
 
-    public DaoBook getBooks() {
-        return books;
+    public void addItem(MediaItem mediaItem){
+        items.addItem(mediaItem);
     }
 
-    public DaoMovie getMovies() {
-        return movies;
+    public List<MediaItem> search(String category){
+        return items.getAllItems().stream()
+                .filter(x -> x.getCategory().getName().equals(category))
+                .collect(Collectors.toList());
     }
-
-    public DaoPodcast getPodcasts() {
-        return podcasts;
-    }
-
-    // search by kind
-    public List<? extends MediaItem> search(ItemKind itemKind){
-        switch (itemKind){
-            case BOOK: return books.getAllItems();
-            case MOVIE: return movies.getAllItems();
-            case PODCAST: return podcasts.getAllItems();
-        }
-        return null;
-    }
-
-//    // search by kind
-//    public MediaItem search(ItemKind itemKind){
-//        return null;
-//    }
 }
