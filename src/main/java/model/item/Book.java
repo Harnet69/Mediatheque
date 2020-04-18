@@ -22,7 +22,7 @@ public class Book extends MediaItem implements Readable {
 
     @Override
     public void preview() {
-        System.out.println("Preview a book");
-        read();
+        System.out.println("Preview a book " + getName());
+//        read();
     }
 }

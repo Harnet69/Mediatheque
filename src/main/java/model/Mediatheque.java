@@ -26,7 +26,7 @@ public class Mediatheque {
     }
 
     public void showItems(){
-        for(MediaItem item : Mediatheque.getInstance().search(CategoryKind.BOOK.toString())){
+        for(MediaItem item : items.getAllItems()){
             System.out.println(item.getId() + " : " + item.getName() + " " + item.getCategory().getName() +
                     " " + item.getReleaseYear() + " " + item.getAuthor().getName());
         }

@@ -33,4 +33,9 @@ public class DaoMediaItem implements Dao<MediaItem> {
     public void removeItem(MediaItem item) {
         items.remove(item);
     }
+
+    @Override
+    public void removeItem(int id) {
+        items.removeIf(item -> item.getId() == id);
+    }
 }
