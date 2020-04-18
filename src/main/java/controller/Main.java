@@ -12,11 +12,13 @@ import model.person.User;
 
 public class Main {
     public static void main(String[] args) {
-        Mediatheque.getInstance();
+        Mediatheque library = Mediatheque.getInstance();
 
         Manager manager = new Manager("Adam", "adam", true);
+        library.getManagers().addItem(manager);
 
         Author Tolkien = new Author("Tolkien");
+        library.getAuthors().addItem(Tolkien);
 
         Category book = new Category(CategoryKind.BOOK.toString(), "Fairy story for adults");
         Category movie = new Category(CategoryKind.MOVIE.toString(), "Classic movies to family watching");

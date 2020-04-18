@@ -1,6 +1,6 @@
 package model;
 
-import Dao.DaoMediaItemInMem;
+import Dao.*;
 import model.item.MediaItem;
 
 import java.util.List;
@@ -8,6 +8,10 @@ import java.util.stream.Collectors;
 
 public class Mediatheque {
     private static Mediatheque instance = null;
+    private DaoManagerInMem managers = new DaoManagerInMem();
+    private DaoUserInMem users = new DaoUserInMem();
+    private DaoAuthorInMem authors = new DaoAuthorInMem();
+    private DaoCategoryInMem categories = new DaoCategoryInMem();
     private DaoMediaItemInMem items = new DaoMediaItemInMem();
 
     private Mediatheque() {
@@ -22,6 +26,22 @@ public class Mediatheque {
 
     public DaoMediaItemInMem getItems() {
         return items;
+    }
+
+    public DaoManagerInMem getManagers() {
+        return managers;
+    }
+
+    public DaoUserInMem getUsers() {
+        return users;
+    }
+
+    public DaoAuthorInMem getAuthors() {
+        return authors;
+    }
+
+    public DaoCategoryInMem getCategories() {
+        return categories;
     }
 
     public void showItems(){
