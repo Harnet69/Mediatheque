@@ -15,10 +15,11 @@ public class DaoAuthorInMem implements Dao<Author> {
     }
 
     @Override
-    public List<Author> getItemById(int id) {
-        return authors.stream()
-                .filter(x ->x.getId() == id)
+    public Author getItemById(int id) {
+        List<Author> author = authors.stream()
+                .filter(x -> x.getId() == id)
                 .collect(Collectors.toList());
+        return author.get(0);
     }
 
     @Override

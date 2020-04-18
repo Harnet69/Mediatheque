@@ -1,7 +1,9 @@
 package Dao;
 
+import model.person.Author;
 import model.person.User;
 
+import java.time.chrono.IsoChronology;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -15,10 +17,11 @@ public class DaoUserInMem implements Dao<User> {
     }
 
     @Override
-    public List<User> getItemById(int id) {
-        return users.stream()
+    public User getItemById(int id) {
+        List<User> user = users.stream()
                 .filter(x -> x.getId() == id)
                 .collect(Collectors.toList());
+        return user.get(0);
     }
 
     @Override

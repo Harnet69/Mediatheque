@@ -6,7 +6,7 @@ public interface Dao<T> {
 
     List<T> getAllItems();
 
-    List<T> getItemById(int id);
+    T getItemById(int id);
 
     void addItem(T item);
 

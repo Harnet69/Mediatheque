@@ -23,10 +23,10 @@ public class Main {
         manager.addCategory(new Category(CategoryKind.MOVIE.toString(), "Classic movies to family watching"));
         manager.addCategory(new Category(CategoryKind.PODCAST.toString(),"Listen your favorite books for free!"));
 
-        manager.addItem(new Book("The Hobbit", library.getCategories().getItemById(0).get(0), library.getAuthors().getItemById(0).get(0), 1937, 328));
-        manager.addItem(new Book("Lord of rings", library.getCategories().getItemById(0).get(0),  library.getAuthors().getItemById(0).get(0), 1957, 1584));
-        manager.addItem(new Movie("The Hobbit", library.getCategories().getItemById(1).get(0),  library.getAuthors().getItemById(0).get(0), 350.16, 2017));
-        manager.addItem(new Podcast("Lord of rings", library.getCategories().getItemById(2).get(0),  library.getAuthors().getItemById(0).get(0), 650,2010));
+        manager.addItem(new Book("The Hobbit", library.getCategories().getItemById(0), library.getAuthors().getItemById(0), 1937, 328));
+        manager.addItem(new Book("Lord of rings", library.getCategories().getItemById(0),  library.getAuthors().getItemById(0), 1957, 1584));
+        manager.addItem(new Movie("The Hobbit", library.getCategories().getItemById(1),  library.getAuthors().getItemById(0), 350.16, 2017));
+        manager.addItem(new Podcast("Lord of rings", library.getCategories().getItemById(2),  library.getAuthors().getItemById(0), 650,2010));
 
         System.out.println("List of mediaItems: ");
         Mediatheque.getInstance().showItems();

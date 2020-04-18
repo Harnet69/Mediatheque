@@ -1,5 +1,6 @@
 package Dao;
 
+import model.person.Author;
 import model.person.Manager;
 
 import java.util.ArrayList;
@@ -16,10 +17,11 @@ public class DaoManagerInMem implements Dao<Manager> {
     }
 
     @Override
-    public List<Manager> getItemById(int id) {
-        return managers.stream()
+    public Manager getItemById(int id) {
+        List<Manager> manager = managers.stream()
                 .filter(x -> x.getId() == id)
                 .collect(Collectors.toList());
+        return manager.get(0);
     }
 
     @Override

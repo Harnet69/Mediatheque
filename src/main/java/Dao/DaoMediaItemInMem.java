@@ -1,6 +1,8 @@
 package Dao;
 
+import model.Mediatheque;
 import model.item.MediaItem;
+import model.person.Author;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,10 +18,11 @@ public class DaoMediaItemInMem implements Dao<MediaItem> {
     }
 
     @Override
-    public List<MediaItem> getItemById(int id) {
-        return items.stream()
+    public MediaItem getItemById(int id) {
+        List<MediaItem> item = items.stream()
                 .filter(x -> x.getId() == id)
                 .collect(Collectors.toList());
+        return item.get(0);
     }
 
     @Override

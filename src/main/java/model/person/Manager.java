@@ -42,14 +42,14 @@ public class Manager extends Person {
 
     // CRUD for items
     public void addItem(MediaItem mediaItem){
-        Mediatheque.getInstance().getItems().addItem(mediaItem);
+        library.getItems().addItem(mediaItem);
     }
 
     public void removeItem(MediaItem mediaItem){
-        Mediatheque.getInstance().getItems().removeItem(mediaItem);
+        library.getItems().removeItem(mediaItem);
     }
 
     public void removeItem(int id){
-        Mediatheque.getInstance().getItems().removeItem(id);
+        library.getItems().removeItem(id);
     }
 }

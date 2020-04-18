@@ -1,6 +1,7 @@
 package Dao;
 
 import model.category.Category;
+import model.person.Author;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,10 +16,11 @@ public class DaoCategoryInMem implements Dao<Category> {
     }
 
     @Override
-    public List<Category> getItemById(int id) {
-        return categories.stream()
-                .filter(x ->x.getId() == id)
+    public Category getItemById(int id) {
+        List<Category> category = categories.stream()
+                .filter(x -> x.getId() == id)
                 .collect(Collectors.toList());
+        return category.get(0);
     }
 
     @Override
