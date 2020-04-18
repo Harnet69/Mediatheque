@@ -1,5 +1,6 @@
 package model.person;
 
+import model.category.CategoryKind;
 import model.item.MediaItem;
 
 public class User extends Person {
@@ -12,6 +13,6 @@ public class User extends Person {
     }
 
     public void preview(MediaItem item){
-        System.out.println("Preview an item");
+        item.preview();
     }
 }

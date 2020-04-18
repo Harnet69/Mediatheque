@@ -4,9 +4,9 @@ import model.Mediatheque;
 import model.category.Category;
 import model.item.Book;
 import model.category.CategoryKind;
-import model.item.MediaItem;
 import model.person.Author;
 import model.person.Manager;
+import model.person.User;
 
 public class Main {
     public static void main(String[] args) {
@@ -21,6 +21,7 @@ public class Main {
         manager.addItem(TheHobbit);
         manager.addItem(LordOfRings);
 
+        System.out.println("List of mediaItems: ");
         Mediatheque.getInstance().showItems();
 
         manager.removeItem(TheHobbit);
@@ -28,5 +29,8 @@ public class Main {
         System.out.println();
         System.out.println("After removing: ");
         Mediatheque.getInstance().showItems();
+
+        User user1 = new User("Ivan", "ivan", false);
+        user1.preview(Mediatheque.getInstance().getItems().getAllItems().get(0));
     }
 }

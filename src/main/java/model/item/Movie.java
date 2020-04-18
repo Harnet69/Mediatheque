@@ -21,4 +21,9 @@ public class Movie extends MediaItem implements Watchable {
     public void watch() {
         System.out.println("Watch the movie");
     }
+
+    @Override
+    public void preview() {
+        watch();
+    }
 }

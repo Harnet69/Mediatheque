@@ -3,8 +3,6 @@ package model.item;
 import model.category.Category;
 import model.person.Author;
 
-import java.util.Date;
-
 public abstract class MediaItem {
     private int id;
     private String name;
@@ -42,5 +40,7 @@ public abstract class MediaItem {
     public int getReleaseYear() {
         return releaseYear;
     }
+
+    public abstract void preview();
 
 }
