@@ -9,6 +9,7 @@ public abstract class MediaItem {
     private Category category;
     private Author author;
     private int releaseYear;
+    private boolean isRented = false;
 
     public MediaItem(String name, Category category, Author author, int release) {
         this.name = name;
@@ -39,6 +40,14 @@ public abstract class MediaItem {
 
     public int getReleaseYear() {
         return releaseYear;
+    }
+
+    public boolean isRented() {
+        return isRented;
+    }
+
+    public void setRented(boolean rented) {
+        isRented = rented;
     }
 
     public abstract void preview();

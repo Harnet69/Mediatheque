@@ -24,7 +24,12 @@ public class Manager extends Person {
     }
 
     public void removeCategory(int id){
-        library.getCategories().removeItem(id);
+        try {
+            library.getCategories().removeItem(id);
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("No such id");
+        }
     }
 
     // CRUD for authors

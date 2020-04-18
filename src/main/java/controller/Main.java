@@ -24,25 +24,44 @@ public class Main {
         manager.addCategory(new Category(CategoryKind.PODCAST.toString(),"Listen your favorite books for free!"));
 
         manager.addItem(new Book("The Hobbit", library.getCategories().getItemById(0), library.getAuthors().getItemById(0), 1937, 328));
-        manager.addItem(new Book("Lord of rings", library.getCategories().getItemById(0),  library.getAuthors().getItemById(0), 1957, 1584));
-        manager.addItem(new Movie("The Hobbit", library.getCategories().getItemById(1),  library.getAuthors().getItemById(0), 350.16, 2017));
-        manager.addItem(new Podcast("Lord of rings", library.getCategories().getItemById(2),  library.getAuthors().getItemById(0), 650,2010));
+        manager.addItem(new Book("Lord of rings", library.getCategories().getItemById(0), library.getAuthors().getItemById(0), 1957, 1584));
+        manager.addItem(new Movie("The Hobbit", library.getCategories().getItemById(1), library.getAuthors().getItemById(0), 350.16, 2017));
+        manager.addItem(new Podcast("Lord of rings", library.getCategories().getItemById(2), library.getAuthors().getItemById(0), 650,2010));
 
         System.out.println("List of mediaItems: ");
-        Mediatheque.getInstance().showItems();
+        library.showItems(true);
 
-        manager.removeItem(0);
+        manager.removeItem(1);
         // List of items after removing
         System.out.println();
         System.out.println("After removing: ");
-        Mediatheque.getInstance().showItems();
+        library.showItems(true);
 
         // User preview a media items
         System.out.println();
         User user1 = new User("Ivan", "ivan", false);
         System.out.println(user1.getName()+ ": ");
-        user1.preview(Mediatheque.getInstance().getItems().getAllItems().get(0));
-        user1.preview(Mediatheque.getInstance().search(CategoryKind.MOVIE.toString()).get(0));
-        user1.preview(Mediatheque.getInstance().search(CategoryKind.PODCAST.toString()).get(0));
+        user1.preview(library.getItems().getAllItems().get(0));
+        user1.preview(library.search(CategoryKind.MOVIE.toString()).get(0));
+        user1.preview(library.search(CategoryKind.PODCAST.toString()).get(0));
+
+        // Rent The Hobbit movie
+        user1.rent(2);
+
+        // Show
+        System.out.println();
+        System.out.println("List of non rented media: ");
+        library.showItems(false);
+
+        // Show
+        System.out.println();
+        System.out.println("Rented media item: ");
+        System.out.println(user1.getRentedItems().get(0).getName());
+
+        // Rent The Hobbit movie
+        user1.returnMedia(0);
+
+        System.out.println("List of mediaItems after return: ");
+        library.showItems(true);
     }
 }

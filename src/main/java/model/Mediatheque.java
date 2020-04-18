@@ -44,10 +44,17 @@ public class Mediatheque {
         return categories;
     }
 
-    public void showItems(){
+    public void showItems(boolean showRented){
         for(MediaItem item : items.getAllItems()){
-            System.out.println(item.getId() + " : " + item.getName() + " " + item.getCategory().getName() +
-                    " " + item.getReleaseYear() + " " + item.getAuthor().getName());
+            if(showRented) {
+                System.out.println(item.getId() + " : " + item.getName() + " " + item.getCategory().getName() +
+                        " " + item.getReleaseYear() + " " + item.getAuthor().getName());
+            }else{
+                if(!item.isRented()){
+                    System.out.println(item.getId() + " : " + item.getName() + " " + item.getCategory().getName() +
+                            " " + item.getReleaseYear() + " " + item.getAuthor().getName());
+                }
+            }
         }
     }
 
