@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class DaoMediaItem implements Dao<MediaItem> {
+public class DaoMediaItemInMem implements Dao<MediaItem> {
     private static int idCounter = 0;
     private List<MediaItem> items = new ArrayList<>();
 

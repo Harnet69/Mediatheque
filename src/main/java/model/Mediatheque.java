@@ -1,7 +1,6 @@
 package model;
 
-import Dao.DaoMediaItem;
-import model.category.CategoryKind;
+import Dao.DaoMediaItemInMem;
 import model.item.MediaItem;
 
 import java.util.List;
@@ -9,7 +8,7 @@ import java.util.stream.Collectors;
 
 public class Mediatheque {
     private static Mediatheque instance = null;
-    private DaoMediaItem items = new DaoMediaItem();
+    private DaoMediaItemInMem items = new DaoMediaItemInMem();
 
     private Mediatheque() {
     }
@@ -21,7 +20,7 @@ public class Mediatheque {
         return instance;
     }
 
-    public DaoMediaItem getItems() {
+    public DaoMediaItemInMem getItems() {
         return items;
     }
 

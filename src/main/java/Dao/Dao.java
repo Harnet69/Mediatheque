@@ -13,5 +13,4 @@ public interface Dao<T> {
     void removeItem(T item);
 
     void removeItem(int id);
-
 }
