@@ -40,4 +40,10 @@ public class User extends Person {
     public boolean isRented(int id){
         return library.getItems().getItemById(id).isRented();
     }
+
+    public void reserve(int id){
+        if(!isRented(id)){
+            library.getItems().getItemById(id).setReservedBy(this);
+        }
+    }
 }

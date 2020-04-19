@@ -4,6 +4,7 @@ import model.Mediatheque;
 import model.category.Category;
 import model.item.Book;
 import model.category.CategoryKind;
+import model.item.MediaItem;
 import model.item.Movie;
 import model.item.Podcast;
 import model.person.Author;
@@ -40,6 +41,7 @@ public class Main {
         // User preview a media items
         System.out.println();
         User user1 = new User("Ivan", "ivan", false);
+        User user2 = new User("Pavel", "pavel", false);
         System.out.println(user1.getName()+ ": ");
         user1.preview(library.getItems().getAllItems().get(0));
         user1.preview(library.search(CategoryKind.MOVIE.toString()).get(0));
@@ -58,10 +60,23 @@ public class Main {
         System.out.println("Rented media item: ");
         System.out.println(user1.getRentedItems().get(0).getName());
 
-        // Rent The Hobbit movie
+        // Return The Hobbit movie
         user1.returnMedia(0);
 
         System.out.println("List of mediaItems after return: ");
         library.showItems(true);
+
+        // Reserve Lord of Ring podcast
+        user1.reserve(3);
+        user2.reserve(0);
+
+        // List of reserved items
+        System.out.println();
+        System.out.println("List of reserved items: ");
+        for(MediaItem item : library.getItems().getAllItems()){
+            if(item.getReservedBy() !=null) {
+                System.out.println(item.getReservedBy().getName()+ " reserved: " + item.getCategory().getName()+ " " + item.getName());
+            }
+        }
     }
 }

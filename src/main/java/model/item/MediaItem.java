@@ -2,6 +2,7 @@ package model.item;
 
 import model.category.Category;
 import model.person.Author;
+import model.person.User;
 
 public abstract class MediaItem {
     private int id;
@@ -10,6 +11,7 @@ public abstract class MediaItem {
     private Author author;
     private int releaseYear;
     private boolean isRented = false;
+    private User reservedBy = null;
 
     public MediaItem(String name, Category category, Author author, int release) {
         this.name = name;
@@ -48,6 +50,14 @@ public abstract class MediaItem {
 
     public void setRented(boolean rented) {
         isRented = rented;
+    }
+
+    public User getReservedBy() {
+        return reservedBy;
+    }
+
+    public void setReservedBy(User reservedBy) {
+        this.reservedBy = reservedBy;
     }
 
     public abstract void preview();
