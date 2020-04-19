@@ -30,19 +30,27 @@ public class DaoManagerInMem implements Dao<Manager> {
 
     @Override
     public void addItem(Manager item) {
-        item.setId(idCounter);
-        managers.add(item);
-        idCounter++;
+        if(item != null) {
+            item.setId(idCounter);
+            managers.add(item);
+            idCounter++;
+        }
     }
 
     @Override
     public void removeItem(Manager item) {
-        managers.remove(item);
+        if(item != null) {
+            managers.remove(item);
+        }
     }
 
     @Override
     public void removeItem(int id) {
-        managers.removeIf(manager -> manager.getId() == id);
+        if (isIdExists(id)) {
+            managers.removeIf(manager -> manager.getId() == id);
+        } else {
+            throw new IllegalArgumentException("There isn't such id in managers");
+        }
     }
 
     @Override

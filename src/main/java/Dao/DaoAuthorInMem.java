@@ -28,17 +28,25 @@ public class DaoAuthorInMem implements Dao<Author> {
 
     @Override
     public void addItem(Author item) {
-        authors.add(item);
+        if(item != null){
+            authors.add(item);
+        }
     }
 
     @Override
     public void removeItem(Author item) {
-        authors.remove(item);
+        if(item != null) {
+            authors.remove(item);
+        }
     }
 
     @Override
     public void removeItem(int id) {
-        authors.removeIf(author -> author.getId() == id);
+        if (id >= 0 && isIdExists(id)) {
+            authors.removeIf(author -> author.getId() == id);
+        } else {
+            throw new IllegalArgumentException("There isn't such id in authors");
+        }
     }
 
     @Override

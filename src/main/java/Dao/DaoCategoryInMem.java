@@ -29,18 +29,26 @@ public class DaoCategoryInMem implements Dao<Category> {
 
     @Override
     public void addItem(Category item) {
-        categories.add(item);
+        if(item != null) {
+            categories.add(item);
+        }
     }
 
     @Override
     public void removeItem(Category item) {
-        categories.remove(item);
+        if(item != null) {
+            categories.remove(item);
+        }
 
     }
 
     @Override
     public void removeItem(int id) {
-        categories.removeIf(category -> category.getId() == id);
+        if(isIdExists(id)) {
+            categories.removeIf(category -> category.getId() == id);
+        }else{
+            throw new IllegalArgumentException("There isn't such id in category");
+        }
     }
 
     @Override

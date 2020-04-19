@@ -18,33 +18,41 @@ public class DaoUserInMem implements Dao<User> {
 
     @Override
     public User getItemById(int id) {
-        if(isIdExists(id)) {
+        if (isIdExists(id)) {
             List<User> user = users.stream()
                     .filter(x -> x.getId() == id)
                     .collect(Collectors.toList());
             return user.get(0);
-        }else{
+        } else {
             throw new IllegalArgumentException("There isn't such id in users");
         }
     }
 
     @Override
     public void addItem(User item) {
-        users.add(item);
+        if (item != null) {
+            users.add(item);
+        }
     }
 
     @Override
     public void removeItem(User item) {
-        users.remove(item);
+        if (item != null) {
+            users.remove(item);
         }
+    }
 
     @Override
     public void removeItem(int id) {
-        users.removeIf(user -> user.getId() == id);
+        if (isIdExists(id)) {
+            users.removeIf(user -> user.getId() == id);
+        } else {
+            throw new IllegalArgumentException("There isn't such id in users");
+        }
     }
 
     @Override
     public boolean isIdExists(int id) {
-        return users.parallelStream().anyMatch(e-> e.getId() == id);
+        return users.parallelStream().anyMatch(e -> e.getId() == id);
     }
 }
