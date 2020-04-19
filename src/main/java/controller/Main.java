@@ -110,6 +110,5 @@ public class Main {
         } catch (IllegalArgumentException e) {
             System.out.println("Cant remove");
         }
-        System.out.println("Try some author");
     }
 }

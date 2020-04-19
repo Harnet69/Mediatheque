@@ -26,36 +26,60 @@ public class User extends Person {
         return reservedItems;
     }
 
-    public void preview(MediaItem item){
+    public void preview(MediaItem item) {
         item.preview();
     }
 
-    public void rent(int id){
-        MediaItem rentedItem = library.getItems().getItemById(id);
-        rentedItems.add(rentedItem);
-        rentedItem.setRented(true);
-    }
-
-    public void returnMedia(int id){
-        if(isRented(id)){
-                library.getItems().getItemById(id).setRented(false);
-            }
-    }
-
-    public boolean isRented(int id){
-        return !library.getItems().getItemById(id).isRented();
-    }
-
-    public void reserve(int id){
-        if(isRented(id)){
-            MediaItem itemForReserve = library.getItems().getItemById(id);
-            reservedItems.add(itemForReserve);
-            itemForReserve.setReservedBy(this);
+    public void rent(int id) {
+        if (isIdExists(id)) {
+            MediaItem rentedItem = library.getItems().getItemById(id);
+            rentedItems.add(rentedItem);
+            rentedItem.setRented(true);
+        } else {
+            throw new IllegalArgumentException("There isn't such id in media items");
         }
     }
 
-    public void reservationCancel(int id){
-        reservedItems.removeIf(item -> item.getId() == id);
-        library.getItems().getItemById(id).setReservedBy(null);
+    public void returnMedia(int id) {
+        if (isIdExists(id)) {
+            if (isRented(id)) {
+                library.getItems().getItemById(id).setRented(false);
+            }
+        } else {
+            throw new IllegalArgumentException("There isn't such id in media items");
+        }
+    }
+
+    public boolean isRented(int id) {
+        if (isIdExists(id)) {
+            return !library.getItems().getItemById(id).isRented();
+        } else {
+            throw new IllegalArgumentException("There isn't such id in media items");
+        }
+    }
+
+    public void reserve(int id) {
+        if (isIdExists(id)) {
+            if (isRented(id)) {
+                MediaItem itemForReserve = library.getItems().getItemById(id);
+                reservedItems.add(itemForReserve);
+                itemForReserve.setReservedBy(this);
+            }
+        } else {
+            throw new IllegalArgumentException("There isn't such id in media items");
+        }
+    }
+
+    public void reservationCancel(int id) {
+        if (isIdExists(id)) {
+            reservedItems.removeIf(item -> item.getId() == id);
+            library.getItems().getItemById(id).setReservedBy(null);
+        } else {
+            throw new IllegalArgumentException("There isn't such id in media items");
+        }
+    }
+
+    public boolean isIdExists(int id) {
+        return library.getItems().getAllItems().parallelStream().anyMatch(e -> e.getId() == id);
     }
 }

@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class DaoAuthorInMem implements Dao<Author> {
+    private static int idCounter = 0;
     private List<Author> authors = new ArrayList<>();
 
     @Override
@@ -29,6 +30,8 @@ public class DaoAuthorInMem implements Dao<Author> {
     @Override
     public void addItem(Author item) {
         if(item != null){
+            item.setId(idCounter);
+            idCounter++;
             authors.add(item);
         } else {
             throw new IllegalArgumentException("There isn't such item in authors");

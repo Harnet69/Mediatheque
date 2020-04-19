@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class DaoUserInMem implements Dao<User> {
+    private static int idCounter = 0;
     List<User> users = new ArrayList<>();
 
     @Override
@@ -31,6 +32,8 @@ public class DaoUserInMem implements Dao<User> {
     @Override
     public void addItem(User item) {
         if (item != null) {
+            item.setId(idCounter);
+            idCounter++;
             users.add(item);
         } else {
             throw new IllegalArgumentException("There isn't such item in users");

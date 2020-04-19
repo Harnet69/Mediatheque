@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class DaoCategoryInMem implements Dao<Category> {
+    private static int idCounter = 0;
     private List<Category> categories = new ArrayList<>();
 
     @Override
@@ -30,6 +31,8 @@ public class DaoCategoryInMem implements Dao<Category> {
     @Override
     public void addItem(Category item) {
         if(item != null) {
+            item.setId(idCounter);
+            idCounter++;
             categories.add(item);
         }else{
             throw new IllegalArgumentException("There isn't such item in category");
