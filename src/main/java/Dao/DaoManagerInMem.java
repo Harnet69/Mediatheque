@@ -1,6 +1,5 @@
 package Dao;
 
-import model.person.Author;
 import model.person.Manager;
 
 import java.util.ArrayList;

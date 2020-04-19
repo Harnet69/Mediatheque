@@ -17,6 +17,7 @@ public class Main {
 
         // create manager
         Manager manager = new Manager("Adam", "adam", true);
+//        Manager manager1 = new Manager("", "Jango", true);
 
         // Add author
         try {

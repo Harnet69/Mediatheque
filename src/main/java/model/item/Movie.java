@@ -3,8 +3,6 @@ package model.item;
 import model.category.Category;
 import model.person.Author;
 
-import java.util.Date;
-
 public class Movie extends MediaItem implements Watchable {
     private double length;
 

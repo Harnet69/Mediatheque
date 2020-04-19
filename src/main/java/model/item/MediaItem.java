@@ -25,7 +25,11 @@ public abstract class MediaItem {
     }
 
     public void setId(int id) {
-        this.id = id;
+        if(id >= 0) {
+            this.id = id;
+        }else{
+            throw new IllegalArgumentException("Id can't be a negative number!");
+        }
     }
 
     public String getName() {
@@ -61,5 +65,4 @@ public abstract class MediaItem {
     }
 
     public abstract void preview();
-
 }

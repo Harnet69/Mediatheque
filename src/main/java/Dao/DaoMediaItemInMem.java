@@ -1,8 +1,6 @@
 package Dao;
 
-import model.Mediatheque;
 import model.item.MediaItem;
-import model.person.Author;
 
 import java.util.ArrayList;
 import java.util.List;

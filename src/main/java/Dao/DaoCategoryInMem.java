@@ -1,7 +1,6 @@
 package Dao;
 
 import model.category.Category;
-import model.person.Author;
 
 import java.util.ArrayList;
 import java.util.List;

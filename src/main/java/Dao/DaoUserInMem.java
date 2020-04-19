@@ -1,9 +1,7 @@
 package Dao;
 
-import model.person.Author;
 import model.person.User;
 
-import java.time.chrono.IsoChronology;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;

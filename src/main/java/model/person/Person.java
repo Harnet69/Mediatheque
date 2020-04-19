@@ -7,12 +7,16 @@ public abstract class Person {
     private boolean isManager;
 
     public Person(String name, String login, boolean isManager) {
-        if(!isStringEmpty(name) || !isStringEmpty(login)){
+        if (!isStringEmpty(name)) {
             this.name = name;
-            this.login = login;
-        }else{
-            throw new IllegalArgumentException("Name or login field is empty!");
+        } else {
+            throw new IllegalArgumentException("Name field is empty!");
 //            throw new RuntimeException("Name or login field is empty!");
+        }
+        if (!isStringEmpty(login)) {
+            this.login = login;
+        } else {
+            throw new IllegalArgumentException("Login field is empty!");
         }
         this.isManager = isManager;
     }
@@ -30,10 +34,14 @@ public abstract class Person {
     }
 
     public void setId(int id) {
-        this.id = id;
+        if(id >= 0) {
+            this.id = id;
+        }else{
+            throw new IllegalArgumentException("Id can't be a negative number!");
+        }
     }
 
-    private boolean isStringEmpty(String string){
+    private boolean isStringEmpty(String string) {
         return string.length() == 0;
     }
 }
