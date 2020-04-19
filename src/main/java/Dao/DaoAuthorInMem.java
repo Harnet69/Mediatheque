@@ -30,6 +30,8 @@ public class DaoAuthorInMem implements Dao<Author> {
     public void addItem(Author item) {
         if(item != null){
             authors.add(item);
+        } else {
+            throw new IllegalArgumentException("There isn't such item in authors");
         }
     }
 
@@ -37,6 +39,8 @@ public class DaoAuthorInMem implements Dao<Author> {
     public void removeItem(Author item) {
         if(item != null) {
             authors.remove(item);
+        } else {
+            throw new IllegalArgumentException("There isn't such item in authors");
         }
     }
 

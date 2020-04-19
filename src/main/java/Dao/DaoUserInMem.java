@@ -32,6 +32,8 @@ public class DaoUserInMem implements Dao<User> {
     public void addItem(User item) {
         if (item != null) {
             users.add(item);
+        } else {
+            throw new IllegalArgumentException("There isn't such item in users");
         }
     }
 
@@ -39,6 +41,8 @@ public class DaoUserInMem implements Dao<User> {
     public void removeItem(User item) {
         if (item != null) {
             users.remove(item);
+        }else {
+            throw new IllegalArgumentException("There isn't such item in users");
         }
     }
 

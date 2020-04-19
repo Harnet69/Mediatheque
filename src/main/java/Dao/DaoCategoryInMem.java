@@ -31,6 +31,8 @@ public class DaoCategoryInMem implements Dao<Category> {
     public void addItem(Category item) {
         if(item != null) {
             categories.add(item);
+        }else{
+            throw new IllegalArgumentException("There isn't such item in category");
         }
     }
 
@@ -38,6 +40,8 @@ public class DaoCategoryInMem implements Dao<Category> {
     public void removeItem(Category item) {
         if(item != null) {
             categories.remove(item);
+        }else{
+            throw new IllegalArgumentException("There isn't such item in category");
         }
 
     }

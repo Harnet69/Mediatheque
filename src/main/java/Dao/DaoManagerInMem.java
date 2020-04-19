@@ -23,7 +23,7 @@ public class DaoManagerInMem implements Dao<Manager> {
                     .filter(x -> x.getId() == id)
                     .collect(Collectors.toList());
             return manager.get(0);
-        } else {
+        }else {
             throw new IllegalArgumentException("There isn't such id in managers");
         }
     }
@@ -34,6 +34,8 @@ public class DaoManagerInMem implements Dao<Manager> {
             item.setId(idCounter);
             managers.add(item);
             idCounter++;
+        }else {
+            throw new IllegalArgumentException("There isn't such item in managers");
         }
     }
 
@@ -41,6 +43,8 @@ public class DaoManagerInMem implements Dao<Manager> {
     public void removeItem(Manager item) {
         if(item != null) {
             managers.remove(item);
+        }else {
+            throw new IllegalArgumentException("There isn't such item in managers");
         }
     }
 

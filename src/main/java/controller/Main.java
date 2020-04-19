@@ -103,5 +103,13 @@ public class Main {
         System.out.println();
         System.out.println("List of reserved items after a cancellation: ");
         library.showReservedItems();
+
+        // Manager tries to remove nonexistent item
+        try {
+            manager.removeItem(-1);
+        } catch (IllegalArgumentException e) {
+            System.out.println("Cant remove");
+        }
+        System.out.println("Try some author");
     }
 }
