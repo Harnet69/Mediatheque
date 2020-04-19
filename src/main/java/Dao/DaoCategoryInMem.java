@@ -17,10 +17,14 @@ public class DaoCategoryInMem implements Dao<Category> {
 
     @Override
     public Category getItemById(int id) {
-        List<Category> category = categories.stream()
-                .filter(x -> x.getId() == id)
-                .collect(Collectors.toList());
-        return category.get(0);
+        if(isIdExists(id)) {
+            List<Category> category = categories.stream()
+                    .filter(x -> x.getId() == id)
+                    .collect(Collectors.toList());
+            return category.get(0);
+        }else{
+            throw new IllegalArgumentException("There isn't such id in category");
+        }
     }
 
     @Override
@@ -37,5 +41,10 @@ public class DaoCategoryInMem implements Dao<Category> {
     @Override
     public void removeItem(int id) {
         categories.removeIf(category -> category.getId() == id);
+    }
+
+    @Override
+    public boolean isIdExists(int id) {
+        return categories.parallelStream().anyMatch(e-> e.getId() == id);
     }
 }

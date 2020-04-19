@@ -16,10 +16,14 @@ public class DaoAuthorInMem implements Dao<Author> {
 
     @Override
     public Author getItemById(int id) {
-        List<Author> author = authors.stream()
-                .filter(x -> x.getId() == id)
-                .collect(Collectors.toList());
-        return author.get(0);
+        if (id >= 0 && isIdExists(id)) {
+            List<Author> author = authors.stream()
+                    .filter(x -> x.getId() == id)
+                    .collect(Collectors.toList());
+            return author.get(0);
+        } else {
+            throw new IllegalArgumentException("There isn't such id in authors");
+        }
     }
 
     @Override
@@ -35,5 +39,10 @@ public class DaoAuthorInMem implements Dao<Author> {
     @Override
     public void removeItem(int id) {
         authors.removeIf(author -> author.getId() == id);
+    }
+
+    @Override
+    public boolean isIdExists(int id) {
+        return authors.parallelStream().anyMatch(e-> e.getId() == id);
     }
 }

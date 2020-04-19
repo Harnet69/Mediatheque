@@ -19,10 +19,14 @@ public class DaoMediaItemInMem implements Dao<MediaItem> {
 
     @Override
     public MediaItem getItemById(int id) {
-        List<MediaItem> item = items.stream()
-                .filter(x -> x.getId() == id)
-                .collect(Collectors.toList());
-        return item.get(0);
+        if(isIdExists(id)) {
+            List<MediaItem> item = items.stream()
+                    .filter(x -> x.getId() == id)
+                    .collect(Collectors.toList());
+            return item.get(0);
+        }else{
+            throw new IllegalArgumentException("There isn't such id in media items");
+        }
     }
 
     @Override
@@ -40,5 +44,10 @@ public class DaoMediaItemInMem implements Dao<MediaItem> {
     @Override
     public void removeItem(int id) {
         items.removeIf(item -> item.getId() == id);
+    }
+
+    @Override
+    public boolean isIdExists(int id) {
+       return items.parallelStream().anyMatch(e-> e.getId() == id);
     }
 }

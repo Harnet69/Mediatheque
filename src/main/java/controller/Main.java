@@ -26,6 +26,12 @@ public class Main {
             System.out.println("Author name can't be empty!");
         }
 
+        try {
+            System.out.println("&&&" + library.getAuthors().getItemById(5));
+        } catch (IllegalArgumentException e) {
+            System.out.println("There isn't such id in authors");
+        }
+
 
         manager.addCategory(new Category(CategoryKind.BOOK.toString(), "Fairy story for adults"));
         manager.addCategory(new Category(CategoryKind.MOVIE.toString(), "Classic movies to family watching"));
