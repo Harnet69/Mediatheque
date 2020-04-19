@@ -7,7 +7,11 @@ public class Author {
 
     public Author(String name) {
         this.id = idCounter;
-        this.name = name;
+        if(name.length() != 0){
+            this.name = name;
+        }else{
+            throw new IllegalArgumentException("Name can't be empty!");
+        }
         idCounter++;
     }
 

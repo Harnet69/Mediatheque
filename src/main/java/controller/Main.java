@@ -16,9 +16,16 @@ public class Main {
         Mediatheque library = Mediatheque.getInstance();
 
         Manager manager = new Manager("Adam", "adam", true);
-        library.getManagers().addItem(manager);
+//        library.getManagers().addItem(manager);
 
+        // try to create Author without name
         manager.addAuthor(new Author("Tolkien"));
+        try{
+           manager.addAuthor(new Author(""));
+        } catch (IllegalArgumentException e) {
+            System.out.println("Author name can't be empty!");
+        }
+
 
         manager.addCategory(new Category(CategoryKind.BOOK.toString(), "Fairy story for adults"));
         manager.addCategory(new Category(CategoryKind.MOVIE.toString(), "Classic movies to family watching"));
@@ -42,6 +49,14 @@ public class Main {
         System.out.println();
         User user1 = new User("Ivan", "ivan", false);
         User user2 = new User("Pavel", "pavel", false);
+
+        // test an exception
+        try {
+            User user3 = new User("", "", false);
+        } catch (IllegalArgumentException e) {
+            System.out.println("Name or login field is empty! User haven't created");
+        }
+
         System.out.println(user1.getName()+ ": ");
         user1.preview(library.getItems().getAllItems().get(0));
         user1.preview(library.search(CategoryKind.MOVIE.toString()).get(0));

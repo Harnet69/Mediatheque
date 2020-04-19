@@ -7,8 +7,13 @@ public abstract class Person {
     private boolean isManager;
 
     public Person(String name, String login, boolean isManager) {
-        this.name = name;
-        this.login = login;
+        if(!isStringEmpty(name) || !isStringEmpty(login)){
+            this.name = name;
+            this.login = login;
+        }else{
+            throw new IllegalArgumentException("Name or login field is empty!");
+//            throw new RuntimeException("Name or login field is empty!");
+        }
         this.isManager = isManager;
     }
 
@@ -26,5 +31,9 @@ public abstract class Person {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    private boolean isStringEmpty(String string){
+        return string.length() == 0;
     }
 }

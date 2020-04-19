@@ -8,8 +8,8 @@ import java.util.stream.Collectors;
 
 public class Mediatheque {
     private static Mediatheque instance = null;
-    private DaoManagerInMem managers = new DaoManagerInMem();
-    private DaoUserInMem users = new DaoUserInMem();
+//    private DaoManagerInMem managers = new DaoManagerInMem();
+//    private DaoUserInMem users = new DaoUserInMem();
     private DaoAuthorInMem authors = new DaoAuthorInMem();
     private DaoCategoryInMem categories = new DaoCategoryInMem();
     private DaoMediaItemInMem items = new DaoMediaItemInMem();
@@ -28,13 +28,13 @@ public class Mediatheque {
         return items;
     }
 
-    public DaoManagerInMem getManagers() {
-        return managers;
-    }
-
-    public DaoUserInMem getUsers() {
-        return users;
-    }
+//    public DaoManagerInMem getManagers() {
+//        return managers;
+//    }
+//
+//    public DaoUserInMem getUsers() {
+//        return users;
+//    }
 
     public DaoAuthorInMem getAuthors() {
         return authors;
