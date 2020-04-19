@@ -15,17 +15,27 @@ public class Main {
     public static void main(String[] args) {
         Mediatheque library = Mediatheque.getInstance();
 
+        // create manager
         Manager manager = new Manager("Adam", "adam", true);
-//        library.getManagers().addItem(manager);
 
-        // try to create Author without name
-        manager.addAuthor(new Author("Tolkien"));
-        try{
-           manager.addAuthor(new Author(""));
+        // Add author
+        try {
+            manager.addAuthor(new Author("Tolkien"));
         } catch (IllegalArgumentException e) {
             System.out.println("Author name can't be empty!");
         }
 
+        // try to create Author without name
+        System.out.println("Try to add author with empty name: ");
+        try {
+            manager.addAuthor(new Author(""));
+        } catch (IllegalArgumentException e) {
+            System.out.println("Author name can't be empty!");
+        }
+
+        // Try to get author with unexciting id
+        System.out.println();
+        System.out.println("Try to get author with unexciting id: ");
         try {
             System.out.println("&&&" + library.getAuthors().getItemById(5));
         } catch (IllegalArgumentException e) {
@@ -35,17 +45,26 @@ public class Main {
 
         manager.addCategory(new Category(CategoryKind.BOOK.toString(), "Fairy story for adults"));
         manager.addCategory(new Category(CategoryKind.MOVIE.toString(), "Classic movies to family watching"));
-        manager.addCategory(new Category(CategoryKind.PODCAST.toString(),"Listen your favorite books for free!"));
+        manager.addCategory(new Category(CategoryKind.PODCAST.toString(), "Listen your favorite books for free!"));
 
         manager.addItem(new Book("The Hobbit", library.getCategories().getItemById(0), library.getAuthors().getItemById(0), 1937, 328));
         manager.addItem(new Book("Lord of rings", library.getCategories().getItemById(0), library.getAuthors().getItemById(0), 1957, 1584));
         manager.addItem(new Movie("The Hobbit", library.getCategories().getItemById(1), library.getAuthors().getItemById(0), 350.16, 2017));
-        manager.addItem(new Podcast("Lord of rings", library.getCategories().getItemById(2), library.getAuthors().getItemById(0), 650,2010));
+        manager.addItem(new Podcast("Lord of rings", library.getCategories().getItemById(2), library.getAuthors().getItemById(0), 650, 2010));
 
+        System.out.println();
         System.out.println("List of mediaItems: ");
         library.showItems(true);
 
-        manager.removeItem(1);
+        // Remove item by manager
+        System.out.println();
+        System.out.println("Remove \"Lord of rings\" book by manager: ");
+        try {
+            manager.removeItem(5);
+        } catch (IllegalArgumentException e) {
+            System.out.println("Removing item was failed! Such id don't exist");
+        }
+
         // List of items after removing
         System.out.println();
         System.out.println("After removing: ");
@@ -63,7 +82,7 @@ public class Main {
             System.out.println("Name or login field is empty! User haven't created");
         }
 
-        System.out.println(user1.getName()+ ": ");
+        System.out.println(user1.getName() + ": ");
         user1.preview(library.getItems().getAllItems().get(0));
         user1.preview(library.search(CategoryKind.MOVIE.toString()).get(0));
         user1.preview(library.search(CategoryKind.PODCAST.toString()).get(0));
@@ -82,8 +101,17 @@ public class Main {
         System.out.println(user1.getRentedItems().get(0).getName());
 
         // Return The Hobbit movie
-        user1.returnMedia(0);
+        System.out.println();
+        System.out.println("Return media item: ");
+        try {
+            user1.returnMedia(2);
+//            user1.returnMedia(5); // test exception
+        } catch (IllegalArgumentException e) {
+            System.out.println("Return failed! There is not such id.");
+            ;
+        }
 
+        System.out.println();
         System.out.println("List of mediaItems after return: ");
         library.showItems(true);
 

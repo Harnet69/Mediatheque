@@ -27,7 +27,11 @@ public class User extends Person {
     }
 
     public void preview(MediaItem item) {
-        item.preview();
+        if (item != null) {
+            item.preview();
+        }else {
+            throw new IllegalArgumentException("There isn't such id in media items");
+        }
     }
 
     public void rent(int id) {
