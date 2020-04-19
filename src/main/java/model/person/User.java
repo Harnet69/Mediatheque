@@ -10,6 +10,7 @@ public class User extends Person {
     private static int idCounter = 0;
     private Mediatheque library = Mediatheque.getInstance();
     private List<MediaItem> rentedItems = new ArrayList<>();
+    private List<MediaItem> reservedItems = new ArrayList<>();
 
     public User(String name, String login, boolean isManager) {
         super(name, login, isManager);
@@ -19,6 +20,10 @@ public class User extends Person {
 
     public List<MediaItem> getRentedItems() {
         return rentedItems;
+    }
+
+    public List<MediaItem> getReservedItems() {
+        return reservedItems;
     }
 
     public void preview(MediaItem item){
@@ -32,18 +37,25 @@ public class User extends Person {
     }
 
     public void returnMedia(int id){
-        if(!isRented(id)){
+        if(isRented(id)){
                 library.getItems().getItemById(id).setRented(false);
             }
     }
 
     public boolean isRented(int id){
-        return library.getItems().getItemById(id).isRented();
+        return !library.getItems().getItemById(id).isRented();
     }
 
     public void reserve(int id){
-        if(!isRented(id)){
-            library.getItems().getItemById(id).setReservedBy(this);
+        if(isRented(id)){
+            MediaItem itemForReserve = library.getItems().getItemById(id);
+            reservedItems.add(itemForReserve);
+            itemForReserve.setReservedBy(this);
         }
+    }
+
+    public void reservationCancel(int id){
+        reservedItems.removeIf(item -> item.getId() == id);
+        library.getItems().getItemById(id).setReservedBy(null);
     }
 }

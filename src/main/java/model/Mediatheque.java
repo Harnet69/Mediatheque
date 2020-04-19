@@ -58,9 +58,19 @@ public class Mediatheque {
         }
     }
 
+    public void showReservedItems(){
+        for(MediaItem item : items.getAllItems()){
+            if(item.getReservedBy() !=null) {
+                System.out.println(item.getReservedBy().getName()+ " reserved: " + item.getCategory().getName()+ " " + item.getName());
+            }
+        }
+    }
+
     public List<MediaItem> search(String category){
         return items.getAllItems().stream()
                 .filter(x -> x.getCategory().getName().equals(category))
                 .collect(Collectors.toList());
     }
+
+
 }

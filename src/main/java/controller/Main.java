@@ -73,10 +73,14 @@ public class Main {
         // List of reserved items
         System.out.println();
         System.out.println("List of reserved items: ");
-        for(MediaItem item : library.getItems().getAllItems()){
-            if(item.getReservedBy() !=null) {
-                System.out.println(item.getReservedBy().getName()+ " reserved: " + item.getCategory().getName()+ " " + item.getName());
-            }
-        }
+        library.showReservedItems();
+
+        // Cancellation of a reservation
+        user1.reservationCancel(3);
+
+        // List of reserved items after a cancellation
+        System.out.println();
+        System.out.println("List of reserved items after a cancellation: ");
+        library.showReservedItems();
     }
 }
