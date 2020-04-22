@@ -61,7 +61,7 @@ public class Main {
         System.out.println();
         System.out.println("Remove \"Lord of rings\" book by manager: ");
         try {
-            manager.removeItem(5);
+            manager.removeItem(1);
         } catch (IllegalArgumentException e) {
             System.out.println("Removing item was failed! Such id don't exist");
         }
@@ -139,5 +139,8 @@ public class Main {
         } catch (IllegalArgumentException e) {
             System.out.println("Cant remove");
         }
+        System.out.println(library.getAuthors().getItemById(0).getId());
+        System.out.println(library.getCategories().getItemById(0).getId());
+        System.out.println(library.getItems().getItemById(0).getId());
     }
 }

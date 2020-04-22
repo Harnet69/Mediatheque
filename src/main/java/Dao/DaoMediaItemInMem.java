@@ -39,15 +39,6 @@ public class DaoMediaItemInMem implements Dao<MediaItem> {
     }
 
     @Override
-    public void removeItem(MediaItem item) {
-        if (item != null) {
-            items.remove(item);
-        } else {
-            throw new IllegalArgumentException("There isn't such item in media items");
-        }
-    }
-
-    @Override
     public void removeItem(int id) {
         if (isIdExists(id)) {
             items.removeIf(item -> item.getId() == id);

@@ -39,18 +39,9 @@ public class DaoCategoryInMem implements Dao<Category> {
     }
 
     @Override
-    public void removeItem(Category item) {
-        if(item != null) {
-            categories.remove(item);
-        }else{
-            throw new IllegalArgumentException("There isn't such item in category");
-        }
-
-    }
-
-    @Override
     public void removeItem(int id) {
         if(isIdExists(id)) {
+            System.out.println("fdfd" + id);
             categories.removeIf(category -> category.getId() == id);
         }else{
             throw new IllegalArgumentException("There isn't such id in category");

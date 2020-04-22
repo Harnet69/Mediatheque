@@ -39,15 +39,6 @@ public class DaoAuthorInMem implements Dao<Author> {
     }
 
     @Override
-    public void removeItem(Author item) {
-        if(item != null) {
-            authors.remove(item);
-        } else {
-            throw new IllegalArgumentException("There isn't such item in authors");
-        }
-    }
-
-    @Override
     public void removeItem(int id) {
         if (id >= 0 && isIdExists(id)) {
             authors.removeIf(author -> author.getId() == id);

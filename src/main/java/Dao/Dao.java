@@ -10,8 +10,6 @@ public interface Dao<T> {
 
     void addItem(T item);
 
-    void removeItem(T item);
-
     void removeItem(int id);
 
     boolean isIdExists(int id);

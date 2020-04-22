@@ -23,14 +23,6 @@ public class Manager extends Person {
         }
     }
 
-    public void removeCategory(Category category){
-        if(category != null) {
-            library.getCategories().removeItem(category);
-        } else {
-            throw new IllegalArgumentException("There isn't such category in categories");
-        }
-    }
-
     public void removeCategory(int id){
         if(isIdExists(id)) {
             library.getCategories().removeItem(id);
@@ -48,14 +40,6 @@ public class Manager extends Person {
         }
     }
 
-    public void removeAuthor(Author author){
-        if(author != null) {
-            library.getAuthors().removeItem(author);
-        }else {
-            throw new IllegalArgumentException("There isn't such author in authors");
-        }
-    }
-
     public void removeAuthor(int id){
         if(isIdExists(id)) {
             library.getAuthors().removeItem(id);
@@ -68,14 +52,6 @@ public class Manager extends Person {
     public void addItem(MediaItem mediaItem){
         if(mediaItem != null) {
             library.getItems().addItem(mediaItem);
-        }else {
-            throw new IllegalArgumentException("There isn't such media item in items");
-        }
-    }
-
-    public void removeItem(MediaItem mediaItem){
-        if(mediaItem != null) {
-            library.getItems().removeItem(mediaItem);
         }else {
             throw new IllegalArgumentException("There isn't such media item in items");
         }

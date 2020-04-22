@@ -39,15 +39,6 @@ public class DaoManagerInMem implements Dao<Manager> {
     }
 
     @Override
-    public void removeItem(Manager item) {
-        if(item != null) {
-            managers.remove(item);
-        }else {
-            throw new IllegalArgumentException("There isn't such item in managers");
-        }
-    }
-
-    @Override
     public void removeItem(int id) {
         if (isIdExists(id)) {
             managers.removeIf(manager -> manager.getId() == id);

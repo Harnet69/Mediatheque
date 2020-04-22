@@ -2,66 +2,98 @@ package model.person;
 
 import model.Mediatheque;
 import model.category.Category;
-import org.junit.Before;
-import org.junit.Test;
+import model.item.Book;
+import model.item.Podcast;
+import org.junit.jupiter.api.*;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
-public class ManagerTest {
-    Mediatheque lib = Mediatheque.getInstance();
-    Manager manager = new Manager("Adam", "adam", true);
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
+class ManagerTest {
+    private Mediatheque lib;
+    private Manager manager;
+    private Category bookCat;
+    private Category movieCat2;
+    private Category podcastCat3;
+    private Author Tolkien;
+    private Author Pratchet;
+    private Book book;
+    private Podcast podcast;
 
-    @Before
-    public void setUp() throws Exception {
+
+    @BeforeEach
+    void setUp() {
+        lib = Mediatheque.getInstance();
+        manager = new Manager("Adam", "adam", true);
+        bookCat = new Category("book", "Something to read");
+        movieCat2 = new Category("movie", "Something to watch");
+        podcastCat3 = new Category("podcast", "Something to listen");
+        Tolkien = new Author("Tolkien");
+        Pratchet = new Author("Pratchet");
+        book = new Book("The Hobbit", bookCat, Tolkien, 1937, 358);
+        podcast = new Podcast("Lord of rings", podcastCat3, Tolkien, 356, 205);
+        manager.addCategory(bookCat);
+        manager.addAuthor(Tolkien);
+        manager.addItem(book);
     }
 
     @Test
-    public void addCategory() {
+    @Order(1)
+    void addCategory() {
         int sizeBefore = lib.getCategories().getAllItems().size();
-        manager.addCategory(new Category("books", "Smth to read"));
+        manager.addCategory(movieCat2);
         assertEquals(sizeBefore + 1, lib.getCategories().getAllItems().size());
-        assertEquals("books", lib.getCategories().getAllItems().get(0).getName());
+        assertEquals("movie", lib.getCategories().getItemById(1).getName());
     }
 
     @Test
-    public void removeCategory() {
-        Category cat = new Category("books", "Smth to read");
-        manager.addCategory(new Category("books", "Smth to read"));
-        int sizeBeforeRemoving = lib.getCategories().getAllItems().size();
-        manager.removeCategory(cat);
-        int sizeAfterRemoving = lib.getCategories().getAllItems().size();
-        assertEquals(sizeAfterRemoving, lib.getCategories().getAllItems().size());
+    @Order(2)
+    void removeCategory() {
+        int sizeBefore = lib.getCategories().getAllItems().size();
+        manager.removeCategory(0);
+        assertEquals(lib.getCategories().getAllItems().size(), sizeBefore -1);
     }
 
     @Test
-    public void testRemoveCategory() {
+    @Order(3)
+    void addAuthor() {
+        int sizeBefore = lib.getAuthors().getAllItems().size();
+        manager.addAuthor(Pratchet);
+        assertEquals(sizeBefore +1, lib.getAuthors().getAllItems().size());
+        assertEquals("Pratchet", lib.getAuthors().getItemById(3).getName());
     }
 
     @Test
-    public void addAuthor() {
+    @Order(4)
+    void removeAuthor() {
+        int sizeBefore = lib.getAuthors().getAllItems().size();
+        manager.removeAuthor(0);
+        assertEquals(sizeBefore -1, lib.getAuthors().getAllItems().size());
     }
 
     @Test
-    public void removeAuthor() {
+    @Order(5)
+    void addItem() {
+        int sizeBefore = lib.getItems().getAllItems().size();
+        manager.addItem(podcast);
+        assertEquals(sizeBefore +1, lib.getItems().getAllItems().size());
     }
 
     @Test
-    public void testRemoveAuthor() {
+    @Order(6)
+    void removeItem() {
+        int sizeBefore = lib.getItems().getAllItems().size();
+        manager.removeItem(0);
+        assertEquals(sizeBefore - 1, lib.getItems().getAllItems().size());
     }
 
-    @Test
-    public void addItem() {
+    @ParameterizedTest
+    @Order(7)
+    @ValueSource(ints = {2})
+    void isIdExists(int id) {
+       assertTrue(manager.isIdExists(id));
     }
 
-    @Test
-    public void removeItem() {
-    }
-
-    @Test
-    public void testRemoveItem() {
-    }
-
-    @Test
-    public void isIdExists() {
-    }
 }
