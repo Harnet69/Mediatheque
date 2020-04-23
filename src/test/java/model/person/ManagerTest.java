@@ -50,6 +50,19 @@ class ManagerTest {
 
     @Test
     @Order(2)
+    void addCategoryException() {
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+            manager.addCategory(null);
+        });
+
+        String expectedMessage = "There isn't such category in categories";
+        String actualMessage = exception.getMessage();
+
+        assertTrue(actualMessage.contains(expectedMessage));
+    }
+
+    @Test
+    @Order(3)
     void removeCategory() {
         int sizeBefore = lib.getCategories().getAllItems().size();
         manager.removeCategory(0);
@@ -57,16 +70,42 @@ class ManagerTest {
     }
 
     @Test
-    @Order(3)
+    @Order(4)
+    void removeCategoryException() {
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+            manager.removeCategory(-1);
+        });
+
+        String expectedMessage = "There isn't category with such id in categories";
+        String actualMessage = exception.getMessage();
+
+        assertTrue(actualMessage.contains(expectedMessage));
+    }
+
+    @Test
+    @Order(5)
     void addAuthor() {
         int sizeBefore = lib.getAuthors().getAllItems().size();
         manager.addAuthor(Pratchet);
         assertEquals(sizeBefore +1, lib.getAuthors().getAllItems().size());
-        assertEquals("Pratchet", lib.getAuthors().getItemById(3).getName());
+        assertEquals("Tolkien", lib.getAuthors().getItemById(3).getName());
     }
 
     @Test
-    @Order(4)
+    @Order(6)
+    void addAuthorException() {
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+            manager.addAuthor(null);
+        });
+
+        String expectedMessage = "There isn't such author in authors";
+        String actualMessage = exception.getMessage();
+
+        assertTrue(actualMessage.contains(expectedMessage));
+    }
+
+    @Test
+    @Order(7)
     void removeAuthor() {
         int sizeBefore = lib.getAuthors().getAllItems().size();
         manager.removeAuthor(0);
@@ -74,7 +113,20 @@ class ManagerTest {
     }
 
     @Test
-    @Order(5)
+    @Order(8)
+    void removeAuthorException() {
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+            manager.removeAuthor(-1);
+        });
+
+        String expectedMessage = "There isn't author with such id in authors";
+        String actualMessage = exception.getMessage();
+
+        assertTrue(actualMessage.contains(expectedMessage));
+    }
+
+    @Test
+    @Order(9)
     void addItem() {
         int sizeBefore = lib.getItems().getAllItems().size();
         manager.addItem(podcast);
@@ -82,18 +134,43 @@ class ManagerTest {
     }
 
     @Test
-    @Order(6)
+    @Order(10)
+    void addItemException() {
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+            manager.addItem(null);
+        });
+
+        String expectedMessage = "There isn't such media item in items";
+        String actualMessage = exception.getMessage();
+
+        assertTrue(actualMessage.contains(expectedMessage));
+    }
+
+    @Test
+    @Order(11)
     void removeItem() {
         int sizeBefore = lib.getItems().getAllItems().size();
         manager.removeItem(0);
         assertEquals(sizeBefore - 1, lib.getItems().getAllItems().size());
     }
 
+    @Test
+    @Order(12)
+    void removeItemException() {
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+            manager.removeItem(-1);
+        });
+
+        String expectedMessage = "There isn't author with such id in authors";
+        String actualMessage = exception.getMessage();
+
+        assertTrue(actualMessage.contains(expectedMessage));
+    }
+
     @ParameterizedTest
-    @Order(7)
+    @Order(13)
     @ValueSource(ints = {2})
     void isIdExists(int id) {
        assertTrue(manager.isIdExists(id));
     }
-
 }

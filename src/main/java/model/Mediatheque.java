@@ -71,6 +71,4 @@ public class Mediatheque {
                 .filter(x -> x.getCategory().getName().equals(category))
                 .collect(Collectors.toList());
     }
-
-
 }
